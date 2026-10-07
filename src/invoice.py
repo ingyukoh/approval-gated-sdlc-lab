@@ -1,2 +1,2 @@
 def total(subtotal):
-    return subtotal * 0.10
+    return subtotal * 1.10
