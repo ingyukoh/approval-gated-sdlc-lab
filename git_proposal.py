@@ -16,7 +16,7 @@ def prepare(proposal, root):
     if proposal['tool'] != 'propose_patch':
         raise Rejected('planner_may_only_propose_patch')
     path = root / PATH
-    if path.is_symlink() or path.resolve().parent != (root / 'src').resolve():
+    if (root / 'src').is_symlink() or path.is_symlink() or path.resolve().parent != root.resolve() / 'src':
         raise Rejected('path_not_allowed')
     if path.read_text() != BASE:
         raise Rejected('base_revision_mismatch')

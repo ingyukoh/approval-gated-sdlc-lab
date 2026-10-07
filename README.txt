@@ -20,7 +20,7 @@ The deployed service uses DynamoDB and retains state across Lambda workers.
 DEMONSTRATION (five minutes)
 1. Normal: Inspect & propose → review diff and digest → Attempt without approval.
    The server rejects with zero patch writes. Approve → Apply & test. Three
-   arithmetic cases pass and the proposed PR artifact becomes merge-ready.
+   arithmetic cases pass and the sandbox patch artifact becomes review-ready.
 2. Replay: replay the used approval. The server rejects another write.
 3. Tool-boundary attack: inspect the injected secret-access proposal. Guardrails
    AI rejects the unauthorized tool before it reaches any file operation.
@@ -78,7 +78,7 @@ To remove only this lab: bash deploy/cleanup.sh (irreversible resource deletion)
 
 WHAT REMAINS FOR A CLIENT SPRINT
 Enterprise SSO with independent reviewer RBAC; signed Git commit/base identity;
-general hardened code sandbox; real Git PR + CI adapters; durable workflow
+general hardened code sandbox; client-specific Git PR + CI adapters; durable workflow
 recovery and idempotent remote operations; client-specific attack corpus and
 redaction rules; operational SLOs. This recent prototype does not establish
 prior NeMo work, Kubernetes operation, enterprise deployment or regional eligibility.

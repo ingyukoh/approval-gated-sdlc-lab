@@ -1,0 +1,21 @@
+{
+  "repository_url": "https://github.com/ingyukoh/approval-gated-sdlc-lab",
+  "pr_url": "https://github.com/ingyukoh/approval-gated-sdlc-lab/pull/1",
+  "pr_author": "github-actions[bot]",
+  "head_sha": "1f9437ec687ae62479a26a9ca1c5421178bd952c",
+  "status": "open_pending_human_review",
+  "required_check": "agent-boundary-tests",
+  "verification_url": "https://github.com/ingyukoh/approval-gated-sdlc-lab/actions/runs/37693204374",
+  "proposal_tests_passed": 69,
+  "main_tests_passed": 66,
+  "main_expected_failures": 3,
+  "merge_review_count": 1,
+  "dismiss_stale_reviews": true,
+  "require_last_push_approval": true,
+  "enforce_admins": true,
+  "release_self_review_prevented": true,
+  "release_admin_bypass": false,
+  "release_status": "waiting",
+  "release_url": "https://github.com/ingyukoh/approval-gated-sdlc-lab/actions/runs/37693209505",
+  "summary": "Real GitHub Actions bot PR: 69 proposal tests passed and the exact-commit check succeeded. Main requires human review (including administrators) and dismisses stale approvals. The PR remains blocked pending review. A separate release-evidence job waits at an environment gate with self-review and admin bypass disabled. This gate has no AWS deployment credentials."
+}
