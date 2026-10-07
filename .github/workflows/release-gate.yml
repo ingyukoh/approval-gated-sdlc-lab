@@ -1,0 +1,19 @@
+name: sandbox-release-approval
+on:
+  workflow_dispatch:
+env:
+  PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+  OTEL_SDK_DISABLED: "true"
+  LITELLM_LOCAL_MODEL_COST_MAP: "True"
+permissions:
+  contents: read
+jobs:
+  release:
+    environment: sandbox-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          printf 'Approved sandbox release evidence for commit %s\n' "$GITHUB_SHA"
+          # This gate has no AWS credentials and cannot deploy the public service.
+          # Production deployment integration remains separate.

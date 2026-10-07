@@ -1,0 +1,53 @@
+name: verify-agent-pr
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Bot-created sandbox proposal branch
+        required: true
+        type: string
+env:
+  PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+  OTEL_SDK_DISABLED: "true"
+  LITELLM_LOCAL_MODEL_COST_MAP: "True"
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      statuses: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.lock
+      - name: Fetch and validate only the proposed invoice file
+        env:
+          PROPOSAL_BRANCH: ${{ inputs.branch }}
+        run: |
+          set -eu
+          [[ "$PROPOSAL_BRANCH" =~ ^agent/invoice-[0-9]+$ ]]
+          git fetch origin "$PROPOSAL_BRANCH"
+          test "$(git diff --name-only origin/main FETCH_HEAD)" = "src/invoice.py"
+          git show FETCH_HEAD:src/invoice.py > /tmp/proposed-invoice.py
+          python -c 'from pathlib import Path; from policy import ToolGuard,BASE,PATH; p={"tool":"propose_patch","path":PATH,"before":BASE,"after":Path("/tmp/proposed-invoice.py").read_text()}; ToolGuard().check(p); Path(PATH).write_text(p["after"])'
+          git rev-parse FETCH_HEAD > /tmp/verified-head.txt
+      - run: python -m pytest -q
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-head
+          path: /tmp/verified-head.txt
+      - name: Attach passing status to the exact tested commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          head=$(cat /tmp/verified-head.txt)
+          gh api --method POST "repos/$GH_REPO/statuses/$head" -f state=success -f context=agent-boundary-tests -f description='Exact proposed file validated and tests passed' -f target_url="https://github.com/$GH_REPO/actions/runs/$GITHUB_RUN_ID"

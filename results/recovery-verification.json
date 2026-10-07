@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "method": "Code deployment recycled Lambda workers while preserving SESSION_KEY and DynamoDB",
+  "before_worker": "ace2b8ddca8009a9",
+  "after_worker": "578975dfa23538bf",
+  "waiting_run_restored": true,
+  "old_session_and_csrf_valid": true,
+  "approved_execution_writes": 1,
+  "replay_additional_writes": 0,
+  "first_page_https_ms": 1915.21,
+  "first_tool_check_https_ms": 4745.95,
+  "health": {
+    "status": "ok",
+    "guardrails_ai": "0.11.0",
+    "worker_id": "578975dfa23538bf",
+    "process_peak_rss_mb": 144.46,
+    "persistence": "DynamoDB",
+    "planner": "recorded proposal"
+  },
+  "scope": "One deployment recovery sample; not an external side-effect exactly-once guarantee."
+}

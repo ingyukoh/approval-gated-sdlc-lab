@@ -1,0 +1,9 @@
+__pycache__
+.pytest_cache
+.venv
+deployment-state.json
+*.png
+*.tar.gz
+*.xml
+.git
+.env*

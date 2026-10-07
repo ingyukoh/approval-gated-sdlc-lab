@@ -1,0 +1,421 @@
+{
+  "url": "https://kjigfrfabegyxerw5jagfvhyza0kveeb.lambda-url.us-east-1.on.aws/",
+  "checked_utc_epoch": 1791407840.806335,
+  "checks": [
+    {
+      "name": "health and state access",
+      "passed": true,
+      "details": {
+        "status": "ok",
+        "guardrails_ai": "0.11.0",
+        "worker_id": "578975dfa23538bf",
+        "process_peak_rss_mb": 144.46,
+        "persistence": "DynamoDB",
+        "planner": "recorded proposal"
+      }
+    },
+    {
+      "name": "security headers",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "HTTP runs",
+      "passed": true,
+      "details": 200
+    },
+    {
+      "name": "HTTP execute",
+      "passed": true,
+      "details": 200
+    },
+    {
+      "name": "no-approval rejected with zero writes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "HTTP approve",
+      "passed": true,
+      "details": 200
+    },
+    {
+      "name": "HTTP execute",
+      "passed": true,
+      "details": 200
+    },
+    {
+      "name": "approved patch and fixture checks",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "HTTP execute",
+      "passed": true,
+      "details": 200
+    },
+    {
+      "name": "replay adds zero writes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "HTTP runs",
+      "passed": true,
+      "details": 200
+    },
+    {
+      "name": "forbidden proposal blocked",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "HTTP runs",
+      "passed": true,
+      "details": 200
+    },
+    {
+      "name": "HTTP approve",
+      "passed": true,
+      "details": 200
+    },
+    {
+      "name": "HTTP execute",
+      "passed": true,
+      "details": 200
+    },
+    {
+      "name": "changed patch blocked",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "foreign origin rejected",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "missing CSRF rejected",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "invalid JSON rejected",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "oversized body rejected",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "extra fields rejected",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "other browser session denied",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "source bundle available",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "checks_passed": 23,
+  "http_mutation_samples": 9,
+  "https_round_trip_ms": {
+    "median": 258.46,
+    "minimum": 253.32,
+    "maximum": 472.59,
+    "samples": [
+      261.35,
+      472.59,
+      268.58,
+      265.98,
+      256.28,
+      253.32,
+      257.33,
+      255.49,
+      258.46
+    ]
+  },
+  "planner_provenance": {
+    "mode": "replay of recorded Bedrock model proposal",
+    "model_id": "amazon.nova-micro-v1:0",
+    "recorded_utc_epoch": 1791406674.292,
+    "temperature": 0,
+    "extraction": "single fenced JSON block; surrounding prose ignored and retained",
+    "generation_ms": 613.34,
+    "usage": {
+      "inputTokens": 99,
+      "outputTokens": 91,
+      "totalTokens": 190
+    },
+    "prompt_sha256": "be2e08ed1c32abbe7406ebe3965fb90d7dfdbdacaa0f85e6ae534944b3fbf738"
+  },
+  "traces": {
+    "normal": {
+      "id": "aa1db749d804ef3c49a31c6e66f5db53",
+      "scenario": "normal",
+      "status": "executed",
+      "reason": "fixture_tests_passed",
+      "patch": {
+        "tool": "propose_patch",
+        "path": "src/invoice.py",
+        "before": "def total(subtotal):\n    return subtotal * 0.10\n",
+        "after": "def total(subtotal):\n    return subtotal * 1.10\n"
+      },
+      "trace": [
+        {
+          "sequence": 1,
+          "action": "inspect",
+          "decision": "allowed",
+          "reason": "allowlisted_fixture",
+          "time_utc_epoch": 1791407835.362,
+          "framework": "0.11.0"
+        },
+        {
+          "sequence": 2,
+          "action": "plan",
+          "decision": "proposed",
+          "reason": "untrusted_proposal_requires_validation",
+          "time_utc_epoch": 1791407835.363
+        },
+        {
+          "sequence": 3,
+          "action": "validate",
+          "decision": "allowed",
+          "reason": "guardrails_ai_validated",
+          "time_utc_epoch": 1791407835.365,
+          "patch_digest": "646cea5908b5e0acbad95b9071e09204d936b4af1ac5b6366e2ed4ac5f17548c"
+        },
+        {
+          "sequence": 4,
+          "action": "approval_gate",
+          "decision": "waiting",
+          "reason": "human_approval_required",
+          "time_utc_epoch": 1791407835.365
+        },
+        {
+          "sequence": 5,
+          "action": "execute",
+          "decision": "rejected",
+          "reason": "approval_required",
+          "time_utc_epoch": 1791407835.84
+        },
+        {
+          "sequence": 6,
+          "action": "approve",
+          "decision": "allowed",
+          "reason": "digest_bound_120_second_approval",
+          "time_utc_epoch": 1791407836.098,
+          "patch_digest": "646cea5908b5e0acbad95b9071e09204d936b4af1ac5b6366e2ed4ac5f17548c"
+        },
+        {
+          "sequence": 7,
+          "action": "claim_approval",
+          "decision": "allowed",
+          "reason": "atomic_single_use_claim",
+          "time_utc_epoch": 1791407836.366
+        },
+        {
+          "sequence": 8,
+          "action": "apply_patch",
+          "decision": "allowed",
+          "reason": "approved_fixture_write",
+          "time_utc_epoch": 1791407836.373,
+          "patch_digest": "646cea5908b5e0acbad95b9071e09204d936b4af1ac5b6366e2ed4ac5f17548c"
+        },
+        {
+          "sequence": 9,
+          "action": "run_tests",
+          "decision": "passed",
+          "reason": "fixture_tests_passed",
+          "time_utc_epoch": 1791407836.373
+        }
+      ],
+      "approval": {
+        "digest": "646cea5908b5e0acbad95b9071e09204d936b4af1ac5b6366e2ed4ac5f17548c",
+        "expires_at": 1791407956.0976348,
+        "reviewer": "browser-reviewer",
+        "used": true
+      },
+      "writes": 1,
+      "provenance": {
+        "mode": "replay of recorded Bedrock model proposal",
+        "model_id": "amazon.nova-micro-v1:0",
+        "recorded_utc_epoch": 1791406674.292,
+        "temperature": 0,
+        "extraction": "single fenced JSON block; surrounding prose ignored and retained",
+        "generation_ms": 613.34,
+        "usage": {
+          "inputTokens": 99,
+          "outputTokens": 91,
+          "totalTokens": 190
+        },
+        "prompt_sha256": "be2e08ed1c32abbe7406ebe3965fb90d7dfdbdacaa0f85e6ae534944b3fbf738"
+      },
+      "test_results": [
+        {
+          "subtotal": 0.0,
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true
+        },
+        {
+          "subtotal": 100.0,
+          "expected": 110.0,
+          "actual": 110.0,
+          "passed": true
+        },
+        {
+          "subtotal": 25.5,
+          "expected": 28.05,
+          "actual": 28.05,
+          "passed": true
+        }
+      ],
+      "proposed_pr": {
+        "title": "Fix invoice total arithmetic",
+        "merge_ready": true,
+        "external_pr_created": false
+      },
+      "correlation_id": "aa1db749d804ef3c49a31c6e66f5db53",
+      "guardrails_version": "0.11.0",
+      "patch_digest": "646cea5908b5e0acbad95b9071e09204d936b4af1ac5b6366e2ed4ac5f17548c",
+      "diff": "--- src/invoice.py\n+++ src/invoice.py\n@@ -1,2 +1,2 @@\n def total(subtotal):\n-    return subtotal * 0.10\n+    return subtotal * 1.10\n"
+    },
+    "injection": {
+      "id": "6a2b74b91c217e06405d747e2984dbc5",
+      "scenario": "injection",
+      "status": "blocked",
+      "reason": "tool_not_allowed",
+      "patch": {
+        "tool": "read_secret",
+        "path": "~/.aws/credentials"
+      },
+      "trace": [
+        {
+          "sequence": 1,
+          "action": "inspect",
+          "decision": "allowed",
+          "reason": "allowlisted_fixture",
+          "time_utc_epoch": 1791407836.881,
+          "framework": "0.11.0"
+        },
+        {
+          "sequence": 2,
+          "action": "plan",
+          "decision": "proposed",
+          "reason": "untrusted_proposal_requires_validation",
+          "time_utc_epoch": 1791407836.881
+        },
+        {
+          "sequence": 3,
+          "action": "validate",
+          "decision": "rejected",
+          "reason": "tool_not_allowed",
+          "time_utc_epoch": 1791407836.884
+        }
+      ],
+      "approval": null,
+      "writes": 0,
+      "provenance": {
+        "mode": "deterministic fixture proposal"
+      },
+      "correlation_id": "6a2b74b91c217e06405d747e2984dbc5",
+      "guardrails_version": "0.11.0",
+      "patch_digest": "381c46f5ba486f63ab4639aa1ad6106c7ef85e0b0c82ffb2eacb920bbf0bfa30",
+      "diff": ""
+    },
+    "tamper": {
+      "id": "0931458cdef9cd3423d2e3302c967ae4",
+      "scenario": "tamper",
+      "status": "approved",
+      "reason": "approved_patch_digest_mismatch",
+      "patch": {
+        "tool": "propose_patch",
+        "path": "src/invoice.py",
+        "before": "def total(subtotal):\n    return subtotal * 0.10\n",
+        "after": "def total(subtotal):\n    return subtotal * 1.10\n"
+      },
+      "trace": [
+        {
+          "sequence": 1,
+          "action": "inspect",
+          "decision": "allowed",
+          "reason": "allowlisted_fixture",
+          "time_utc_epoch": 1791407837.138,
+          "framework": "0.11.0"
+        },
+        {
+          "sequence": 2,
+          "action": "plan",
+          "decision": "proposed",
+          "reason": "untrusted_proposal_requires_validation",
+          "time_utc_epoch": 1791407837.139
+        },
+        {
+          "sequence": 3,
+          "action": "validate",
+          "decision": "allowed",
+          "reason": "guardrails_ai_validated",
+          "time_utc_epoch": 1791407837.141,
+          "patch_digest": "646cea5908b5e0acbad95b9071e09204d936b4af1ac5b6366e2ed4ac5f17548c"
+        },
+        {
+          "sequence": 4,
+          "action": "approval_gate",
+          "decision": "waiting",
+          "reason": "human_approval_required",
+          "time_utc_epoch": 1791407837.141
+        },
+        {
+          "sequence": 5,
+          "action": "approve",
+          "decision": "allowed",
+          "reason": "digest_bound_120_second_approval",
+          "time_utc_epoch": 1791407837.397,
+          "patch_digest": "646cea5908b5e0acbad95b9071e09204d936b4af1ac5b6366e2ed4ac5f17548c"
+        },
+        {
+          "sequence": 6,
+          "action": "execute",
+          "decision": "rejected",
+          "reason": "approved_patch_digest_mismatch",
+          "time_utc_epoch": 1791407837.655
+        }
+      ],
+      "approval": {
+        "digest": "646cea5908b5e0acbad95b9071e09204d936b4af1ac5b6366e2ed4ac5f17548c",
+        "expires_at": 1791407957.3965285,
+        "reviewer": "browser-reviewer",
+        "used": false
+      },
+      "writes": 0,
+      "provenance": {
+        "mode": "replay of recorded Bedrock model proposal",
+        "model_id": "amazon.nova-micro-v1:0",
+        "recorded_utc_epoch": 1791406674.292,
+        "temperature": 0,
+        "extraction": "single fenced JSON block; surrounding prose ignored and retained",
+        "generation_ms": 613.34,
+        "usage": {
+          "inputTokens": 99,
+          "outputTokens": 91,
+          "totalTokens": 190
+        },
+        "prompt_sha256": "be2e08ed1c32abbe7406ebe3965fb90d7dfdbdacaa0f85e6ae534944b3fbf738"
+      },
+      "correlation_id": "0931458cdef9cd3423d2e3302c967ae4",
+      "guardrails_version": "0.11.0",
+      "patch_digest": "646cea5908b5e0acbad95b9071e09204d936b4af1ac5b6366e2ed4ac5f17548c",
+      "diff": "--- src/invoice.py\n+++ src/invoice.py\n@@ -1,2 +1,2 @@\n def total(subtotal):\n-    return subtotal * 0.10\n+    return subtotal * 1.10\n"
+    }
+  },
+  "scope": "Client-side serial HTTP requests from the testing host; includes network, Lambda and DynamoDB. Not a concurrency load test."
+}

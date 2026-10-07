@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.env*
+deployment-state.json
+source.zip
+*.png
+*.log
+results/local-*.json
+*.xml

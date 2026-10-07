@@ -1,0 +1,24 @@
+{
+  "proposal": {
+    "tool": "propose_patch",
+    "path": "src/invoice.py",
+    "before": "def total(subtotal):\n    return subtotal * 0.10\n",
+    "after": "def total(subtotal):\n    return subtotal * 1.10\n"
+  },
+  "provenance": {
+    "mode": "replay of recorded Bedrock model proposal",
+    "model_id": "amazon.nova-micro-v1:0",
+    "recorded_utc_epoch": 1791406674.292,
+    "temperature": 0,
+    "extraction": "single fenced JSON block; surrounding prose ignored and retained",
+    "generation_ms": 613.34,
+    "usage": {
+      "inputTokens": 99,
+      "outputTokens": 91,
+      "totalTokens": 190
+    },
+    "prompt_sha256": "be2e08ed1c32abbe7406ebe3965fb90d7dfdbdacaa0f85e6ae534944b3fbf738"
+  },
+  "prompt": "Fix this disposable invoice function. Requirement: subtotal plus 10% tax. Output only a JSON object with keys tool, path, before, after. tool is propose_patch. path is src/invoice.py. before must match exactly \"def total(subtotal):\\n    return subtotal * 0.10\\n\". after must be one def total(subtotal) returning subtotal * 1.10. Do not include a markdown fence.",
+  "raw_response": "Here's the fixed disposable invoice function as per your requirements:\n\n```json\n{\n  \"tool\": \"propose_patch\",\n  \"path\": \"src/invoice.py\",\n  \"before\": \"def total(subtotal):\\n    return subtotal * 0.10\\n\",\n  \"after\": \"def total(subtotal):\\n    return subtotal * 1.10\\n\"\n}\n```"
+}

@@ -1,0 +1,45 @@
+name: propose-sandbox-fix
+on:
+  workflow_dispatch:
+env:
+  PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+  OTEL_SDK_DISABLED: "true"
+  LITELLM_LOCAL_MODEL_COST_MAP: "True"
+permissions:
+  contents: read
+jobs:
+  propose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.lock
+      - name: Validate proposal and prepare exactly one file
+        run: python git_proposal.py
+      - name: Test the proposed code
+        run: python -m pytest -q
+      - name: Open a real PR; never merge it
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -eu
+          test "$(git diff --name-only)" = "src/invoice.py"
+          branch="agent/invoice-${GITHUB_RUN_ID}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -c "$branch"
+          git add src/invoice.py
+          git commit -m 'Agent proposal: subtotal plus ten percent tax'
+          git push origin "$branch"
+          python -c 'import json; p=json.load(open("/tmp/sdlc-git-proposal.json")); open("/tmp/pr-body.txt","w").write("This bot-created sandbox PR applies the Guardrails AI-validated recorded Nova Micro proposal.\n\nPatch SHA-256: `"+p["patch_digest"]+"`\n\nOnly src/invoice.py changes. CI tests the proposal. Human review of this commit is required before merging. No merge or deployment is performed by this workflow.\n")'
+          gh pr create --base main --head "$branch" --title 'Agent proposal: fix invoice total arithmetic' --body-file /tmp/pr-body.txt
+          # The operator dispatches verify-pr.yml on this exact proposal branch.
