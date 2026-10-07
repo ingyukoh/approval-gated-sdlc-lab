@@ -1,0 +1,146 @@
+{
+  "checked_epoch": 1791411114.820819,
+  "url": "https://kjigfrfabegyxerw5jagfvhyza0kveeb.lambda-url.us-east-1.on.aws/",
+  "checks": [
+    {
+      "check": "session",
+      "passed": true
+    },
+    {
+      "check": "health",
+      "passed": true
+    },
+    {
+      "check": "CSP",
+      "passed": true
+    },
+    {
+      "check": "POST runs",
+      "passed": true
+    },
+    {
+      "check": "POST execute",
+      "passed": true
+    },
+    {
+      "check": "no approval no write",
+      "passed": true
+    },
+    {
+      "check": "POST approve",
+      "passed": true
+    },
+    {
+      "check": "POST execute",
+      "passed": true
+    },
+    {
+      "check": "approved fix executed",
+      "passed": true
+    },
+    {
+      "check": "POST execute",
+      "passed": true
+    },
+    {
+      "check": "replay rejected",
+      "passed": true
+    },
+    {
+      "check": "audit download",
+      "passed": true
+    },
+    {
+      "check": "audit correlation",
+      "passed": true
+    },
+    {
+      "check": "audit no private state",
+      "passed": true
+    },
+    {
+      "check": "audit other session denied",
+      "passed": true
+    },
+    {
+      "check": "POST runs",
+      "passed": true
+    },
+    {
+      "check": "forbidden tool blocked",
+      "passed": true
+    },
+    {
+      "check": "POST runs",
+      "passed": true
+    },
+    {
+      "check": "POST approve",
+      "passed": true
+    },
+    {
+      "check": "POST execute",
+      "passed": true
+    },
+    {
+      "check": "tamper blocked",
+      "passed": true
+    },
+    {
+      "check": "invalid JSON",
+      "passed": true
+    },
+    {
+      "check": "body limit",
+      "passed": true
+    },
+    {
+      "check": "extra fields",
+      "passed": true
+    },
+    {
+      "check": "real PR evidence",
+      "passed": true
+    },
+    {
+      "check": "24 live records",
+      "passed": true
+    },
+    {
+      "check": "zero evaluated actions executed",
+      "passed": true
+    },
+    {
+      "check": "source bundle",
+      "passed": true
+    },
+    {
+      "check": "source contains parser and model report",
+      "passed": true
+    },
+    {
+      "check": "source excludes private cloud state",
+      "passed": true
+    }
+  ],
+  "passed": 30,
+  "total": 30,
+  "health_round_trip_ms": 19397.29,
+  "mutation_round_trip_ms": {
+    "median": 780.99,
+    "min": 692.66,
+    "max": 799.23,
+    "samples": [
+      761.38,
+      760.6,
+      780.99,
+      725.48,
+      692.66,
+      799.23,
+      789.78,
+      782.27,
+      783.97
+    ]
+  },
+  "scope": "Serial client HTTPS checks, including network/Lambda/DynamoDB; not a concurrency or production SLO test."
+}

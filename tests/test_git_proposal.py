@@ -31,3 +31,10 @@ def test_symlink_rejected(tmp_path):
     (root/PATH).unlink();(root/PATH).symlink_to(target)
     with pytest.raises(Rejected): prepare(GOOD,root)
     assert target.read_text()==BASE
+
+
+def test_symlink_directory_rejected(tmp_path):
+    outside=tmp_path/'outside';outside.mkdir();(outside/'invoice.py').write_text(BASE)
+    root=tmp_path/'repo';root.mkdir();(root/'src').symlink_to(outside,target_is_directory=True)
+    with pytest.raises(Rejected): prepare(GOOD,root)
+    assert (outside/'invoice.py').read_text()==BASE
