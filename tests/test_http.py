@@ -95,7 +95,8 @@ def test_audit_is_owner_scoped_and_sanitized():
     path='/api/runs/'+run['id']+'/audit'
     response=app.handler(event(path,cookie=cookie))
     assert response['statusCode']==200
-    records=[json.loads(line) for line in response['body'].splitlines()]
+    body=base64.b64decode(response['body']).decode() if response.get('isBase64Encoded') else response['body']
+    records=[json.loads(line) for line in body.splitlines()]
     assert records and all(x['correlation_id']==run['correlation_id'] for x in records)
     assert all('owner' not in x and 'patch' not in x and 'approval' not in x for x in records)
     other,_=setup()
