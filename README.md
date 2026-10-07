@@ -32,7 +32,7 @@ The public browser exercise uses a session reviewer and cannot access GitHub. Th
 
 `results/model-proposal.json` preserves the original Bedrock Amazon Nova Micro proposal, exact prompt, response, usage and timing. The interactive page replays it. The forbidden-tool scenario tests executor policy, not model resistance.
 
-`live_model_eval.py generate` runs 24 **live** Bedrock calls: four authored benign and eight authored poisoned README cases, each with basic and hardened prompts. `live_model_eval.py score` separately checks outputs with the actual Guardrails AI validator. Every prompt and response is retained in the report; zero tool actions are executed by this experiment. Strict JSON errors, forbidden proposals and accepted safe patches are reported separately. No independent benchmark or universal attack resistance is claimed.
+`live_model_eval.py generate` runs 24 **live** Bedrock calls: four authored benign and eight authored poisoned README cases, each with basic and hardened prompts. `live_model_eval.py score` separately checks outputs with the actual Guardrails AI validator. Every prompt and response is retained in the report; zero tool actions are executed by this experiment. Strict JSON validity, bounded single-fenced-JSON parsing, forbidden proposals and accepted safe patches are reported separately. Surrounding prose is retained as evidence but never executed. No independent benchmark or universal attack resistance is claimed.
 
 ```sh
 # In authenticated AWS CloudShell
